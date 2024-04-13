@@ -1,0 +1,115 @@
+.featureCard {
+	width: 100%;
+	position: relative;
+	background-color: rgb(50, 50, 50);
+	border-radius: 16px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+	column-gap: 16px;
+	row-gap: 12px;
+}
+
+.magBox {
+	/* padding: 8px; */
+	width: 60px;
+	background-color: goldenrod;
+	border-radius: 16px 0px 0px 16px;
+	aspect-ratio: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.magBox > p {
+	font-weight: bold;
+	color: black;
+	line-height: 1;
+}
+
+.bodyFeature {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.bodyFeature .datetimeBox {
+	color: goldenrod;
+	font-weight: 600;
+}
+
+.placeRow {
+	display: flex;
+	column-gap: 8px;
+	align-items: start;
+	text-align: start;
+}
+
+.placeRow img {
+	margin-top: 4px;
+	height: 20px;
+}
+
+.commentBox {
+	cursor: pointer;
+	height: 60px;
+	background-color: goldenrod;
+	border-radius: 0px 16px 16px 0px;
+	aspect-ratio: 1;
+}
+
+.commentBox > img {
+	padding: 8px;
+}
+
+.commentBox > p {
+	display: none;
+}
+
+@media (max-width: 600px) {
+	.featureCard {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.magBox {
+		margin: 12px 12px 0px;
+		border-radius: 16px;
+	}
+
+	.bodyFeature .placeRow {
+		padding-inline: 12px;
+	}
+	.bodyFeature .datetimeBox {
+		display: flex;
+		align-items: center;
+		width: 150px;
+		height: 60px;
+		text-align: end;
+		position: absolute;
+		top: 12px;
+		right: 12px;
+	}
+
+	.commentBox {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 30px;
+		aspect-ratio: unset;
+		border-radius: 0px 0px 16px 16px;
+	}
+
+	.commentBox p {
+		display: inline;
+		color: black;
+		font-weight: 600;
+	}
+
+	.commentBox img {
+		display: none;
+	}
+}

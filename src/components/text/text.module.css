@@ -1,0 +1,25 @@
+.header {
+	font-size: xx-large;
+	font-weight: bold;
+}
+
+.title {
+	font-size: large;
+	font-weight: 500;
+}
+
+.subtitle {
+	font-size: larger;
+}
+
+.body {
+	font-size: medium;
+}
+
+.label {
+	font-size: small;
+}
+
+.caption {
+	font-size: x-small;
+}
