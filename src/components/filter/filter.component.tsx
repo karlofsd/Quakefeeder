@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { SearchParams } from '../../controllers/feature.controller';
-import styles from './filter.module.css';
+import styles from './filter.module.scss';
 
 type Props = {
 	onLoad: (params?: SearchParams) => Promise<void>,

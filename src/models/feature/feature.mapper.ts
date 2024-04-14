@@ -1,29 +1,26 @@
 import { Mapper } from "../mapper.interface";
-import { FeatureDto } from "./feature.dto";
+import { FeatureResponseDto, FeatureRequestDto } from "./feature.dto";
 import { Feature } from "./feature.model";
 
-export class FeatureMapper implements Mapper<Feature, FeatureDto> {
+export class FeatureMapper
+	implements Mapper<Feature, FeatureResponseDto, FeatureRequestDto>
+{
 	constructor() {}
-	mapModeltoDto(model: Feature): FeatureDto {
+	mapModeltoDto(model: Feature): FeatureRequestDto {
 		return {
 			id: model.id,
-			type: "feature",
-			attributes: {
-				external_id: model.externalId,
-				magnitude: model.magnitude,
-				mag_type: model.magType,
-				place: model.place,
-				title: model.title,
-				time: model.time,
-				tsunami: model.tsunami,
-				coordinates: model.coordinates,
-			},
-			links: {
-				external_url: model.externalUrl,
-			},
+			external_id: model.externalId,
+			magnitude: model.magnitude,
+			mag_type: model.magType,
+			place: model.place,
+			title: model.title,
+			time: model.time,
+			tsunami: model.tsunami,
+			coordinates: model.coordinates,
+			external_url: model.externalUrl,
 		};
 	}
-	mapDtoToModel(dto: FeatureDto): Feature {
+	mapDtoToModel(dto: FeatureResponseDto): Feature {
 		return {
 			id: dto.id,
 			externalId: dto.attributes.external_id,

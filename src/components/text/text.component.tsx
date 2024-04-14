@@ -1,4 +1,4 @@
-import styles from './text.module.css';
+import styles from './text.module.scss';
 
 type Props = {
 	style: 'header' | 'title' | 'subtitle' | 'body' | 'label' | 'caption',

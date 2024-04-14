@@ -1,5 +1,5 @@
-export interface Mapper<T, U> {
-	mapModeltoDto(model: T): U;
+export interface Mapper<T, U, V> {
+	mapModeltoDto(model: T): V;
 
 	mapDtoToModel(dto: U): T;
 }

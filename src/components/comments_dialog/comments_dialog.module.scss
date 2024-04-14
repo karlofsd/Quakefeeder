@@ -1,0 +1,101 @@
+@mixin scrim($direction: to top, $color: #000, $alpha-from: 1, $alpha-to: 0) {
+	$diff: $alpha-from - $alpha-to;
+	background: linear-gradient(
+		$direction,
+		rgba($color, $alpha-from) 0%,
+		rgba($color, $alpha-from - $diff * 0.7) 50%,
+		rgba($color, $alpha-from - $diff * 0.85) 65%,
+		rgba($color, $alpha-from - $diff * 0.925) 75.5%,
+		rgba($color, $alpha-from - $diff * 0.963) 82.85%,
+		rgba($color, $alpha-from - $diff * 0.981) 88%,
+		rgba($color, $alpha-to) 100%
+	);
+}
+
+.closeBtn {
+	position: fixed;
+	top: 0;
+	width: 48px;
+	cursor: pointer;
+	aspect-ratio: 1/1;
+	right: 12px;
+	font-size: 24px;
+	z-index: 2;
+}
+
+.dialogScrim {
+	position: fixed;
+	@include scrim(to top, #000, 1, 0.5);
+	width: inherit;
+	max-width: inherit;
+	max-height: inherit;
+	height: inherit;
+	inset-inline-start: 0px;
+	inset-inline-end: 0px;
+	inset-block-start: 0px;
+	inset-block-end: 0px;
+
+	> dialog {
+		padding: 24px 16px;
+		border: none;
+		background-color: transparent;
+		width: inherit;
+		max-width: 400px;
+		&::backdrop {
+			margin: 20px;
+		}
+		.dialogContainer {
+			display: flex;
+			max-height: calc(100vh - 80px);
+			flex-direction: column;
+			background-color: rgb(75, 75, 75);
+			padding: 16px;
+			border-radius: 12px;
+
+			.boxComment {
+				display: flex;
+				align-items: stretch;
+				border-radius: 16px;
+
+				max-height: 80px;
+				> textarea {
+					border-radius: 12px 0 0 12px;
+					padding: 12px;
+					flex: 1;
+					border: none;
+
+					&:focus-visible {
+						outline: none;
+					}
+				}
+
+				> button {
+					border-radius: 0 12px 12px 0;
+
+					&:focus-visible,
+					&:focus {
+						outline: none;
+					}
+				}
+			}
+
+			.rowTitle {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-block: 8px;
+			}
+
+			.commentList {
+				flex: 1;
+				background-color: rgb(56, 56, 56);
+				border-radius: 12px;
+				overflow: auto;
+				padding-inline: 8px;
+				> :nth-last-child(1) {
+					border: none;
+				}
+			}
+		}
+	}
+}

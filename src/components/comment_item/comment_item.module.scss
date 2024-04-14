@@ -1,0 +1,17 @@
+.commentCard {
+	padding: 12px;
+	height: 80px;
+	min-height: 80px;
+	border-bottom: 1px solid gray;
+	display: flex;
+	flex-direction: column;
+
+	> :nth-child(1) {
+		flex: 1;
+		margin: revert;
+	}
+
+	> :nth-last-child(1) {
+		text-align: end;
+	}
+}

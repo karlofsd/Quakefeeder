@@ -1,12 +1,6 @@
 import axios from "axios";
 import { Config } from "./config";
 
-type Params = {
-	mag_type?: string[];
-	page?: number;
-	per_page?: number;
-};
-
 type Response<T> = {
 	data: T[];
 	pagination: {
@@ -21,23 +15,24 @@ export class FetchClient {
 
 	private maxPage: number = 1000;
 
-	private getUrl(url: string, params?: Params): string {
+	private getUrl(url: string, params?: object): string {
 		let uri: string = `${Config.host}/${url}`;
+
 		if (params) {
-			uri += "?";
-			uri += `mag_type=${params.mag_type ?? "[]"}&`;
-			uri += `page=${params.page ?? 1}&`;
-			uri += `per_page=${params.per_page ?? this.maxPage}`;
+			const _params = { ...params };
+			const entries = Object.entries(_params);
+			const strParams = entries.map(([key, value]) => `${key}=${value}`);
+			if (strParams.length > 0) uri += "?" + strParams.join("&");
 		}
 		return uri;
 	}
 
-	async get<U>(url: string, params: Params): Promise<Response<U>> {
+	async get<U>(url: string, params: object): Promise<Response<U>> {
 		const response = await axios.get(this.getUrl(url, params));
 		return response.data;
 	}
 
-	post(url: string, body: object): Promise<object> {
-		return axios.post(this.getUrl(url), JSON.stringify(body));
+	async post<U>(url: string, body: U): Promise<object> {
+		return await axios.post(this.getUrl(url), body);
 	}
 }

@@ -10,9 +10,9 @@ export const useFeatures = () => {
 	const [isComplete, setIsComplete] = useState(false);
 	const [totalFeatures, setTotalFeatures] = useState(0);
 	const controller = new FeatureController();
+	const [debounce, setDebounce] = useState(0);
 
 	useEffect(() => {
-		// load();
 		if (features.length == totalFeatures) {
 			setIsComplete(true);
 		} else {
@@ -20,13 +20,20 @@ export const useFeatures = () => {
 		}
 	}, [features]);
 
-	const load = async (params?: SearchParams) => {
-		const _features = await controller.get(params);
-		setTotalFeatures(controller.totalFeatures);
+	useEffect(() => {
+		return () => clearTimeout(debounce);
+	}, [debounce]);
 
-		setFeatures(
-			params?.page != 1 ? [...features, ..._features] : _features
-		);
+	const load = (params?: SearchParams) => {
+		const getData = setTimeout(async () => {
+			const _features = await controller.get(params);
+			setTotalFeatures(controller.totalFeatures);
+
+			setFeatures(
+				params?.page != 1 ? [...features, ..._features] : _features
+			);
+		}, 1500);
+		setDebounce(getData);
 	};
 
 	return { features, isComplete, load, totalFeatures };
