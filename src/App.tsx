@@ -34,12 +34,12 @@ function App() {
 			<div style={{ marginTop: '24px' }}>
 				<_Text style='header'>QUAKEFEEDER</_Text>
 				<div style={{ height: '12px' }}></div>
-				<_Text style='title'>Buscador de sismos</_Text>
+				<_Text style='title'>Earthquakes tracking history</_Text>
 				<div style={{ height: '32px' }}></div>
 				<Filter onLoad={handleLoad} />
 				<div style={{ height: '40px' }}></div>
 				{isLoading ? <Spinner /> : <FeatureList list={features} />}
-				{isComplete || isLoading ? <></> : moreLoading ? <Spinner /> : <button style={{ marginBlock: '16px' }} onClick={() => handleLoad({ ...params, page: currPage + 1 })}>Cargar más</button>}
+				{isComplete || isLoading ? <></> : moreLoading ? <Spinner /> : <button style={{ marginBlock: '16px' }} onClick={() => handleLoad({ ...params, page: currPage + 1 })}>Load more</button>}
 
 				{/* Dialog */}
 				{commentsCtxValue.isOpenDialog ? <CommentsDialog /> : <></>}

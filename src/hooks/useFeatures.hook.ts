@@ -9,7 +9,7 @@ export const useFeatures = () => {
 	const [features, setFeatures] = useState<Feature[]>([]);
 	const [isComplete, setIsComplete] = useState(false);
 	const [totalFeatures, setTotalFeatures] = useState(0);
-	const controller = new FeatureController();
+	const featureController = new FeatureController();
 	const [debounce, setDebounce] = useState(0);
 
 	useEffect(() => {
@@ -26,9 +26,8 @@ export const useFeatures = () => {
 
 	const load = (params?: SearchParams) => {
 		const getData = setTimeout(async () => {
-			const _features = await controller.get(params);
-			setTotalFeatures(controller.totalFeatures);
-
+			const _features = await featureController.get(params);
+			setTotalFeatures(featureController.totalFeatures);
 			setFeatures(
 				params?.page != 1 ? [...features, ..._features] : _features
 			);

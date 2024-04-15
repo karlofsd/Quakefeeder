@@ -25,7 +25,9 @@ export class FeatureController {
 		const { data, pagination } = await this._client.get<FeatureResponseDto>(
 			url,
 			{
-				mag_type: params?.magType ?? "[]",
+				mag_type: params?.magType
+					? JSON.stringify(params.magType)
+					: null,
 				page: params?.page,
 				per_page: params?.perPage,
 			}

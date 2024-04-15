@@ -13,21 +13,21 @@ type Response<T> = {
 export class FetchClient {
 	constructor() {}
 
-	private maxPage: number = 1000;
-
 	private getUrl(url: string, params?: object): string {
 		let uri: string = `${Config.host}/${url}`;
 
 		if (params) {
 			const _params = { ...params };
 			const entries = Object.entries(_params);
-			const strParams = entries.map(([key, value]) => `${key}=${value}`);
+			const strParams = entries
+				.filter(([key, value]) => value)
+				.map(([key, value]) => `${key}=${value}`);
 			if (strParams.length > 0) uri += "?" + strParams.join("&");
 		}
 		return uri;
 	}
 
-	async get<U>(url: string, params: object): Promise<Response<U>> {
+	async get<U>(url: string, params?: object): Promise<Response<U>> {
 		const response = await axios.get(this.getUrl(url, params));
 		return response.data;
 	}
