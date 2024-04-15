@@ -1,6 +1,6 @@
 type Coordinates = {
-	longitud: number;
-	latitud: number;
+	longitude: number;
+	latitude: number;
 };
 
 export interface Feature {

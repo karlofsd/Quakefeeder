@@ -10,8 +10,8 @@ export interface FeatureResponseDto {
 		mag_type: string;
 		title: string;
 		coordinates: {
-			longitud: number;
-			latitud: number;
+			longitude: number;
+			latitude: number;
 		};
 	};
 	links: {
@@ -29,8 +29,8 @@ export interface FeatureRequestDto {
 	mag_type: string;
 	title: string;
 	coordinates: {
-		longitud: number;
-		latitud: number;
+		longitude: number;
+		latitude: number;
 	};
 	external_url: string;
 }
